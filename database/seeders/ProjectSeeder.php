@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Project;
-use Faker\Generator as Faker;
+
 
 class ProjectSeeder extends Seeder
 {
@@ -14,15 +14,17 @@ class ProjectSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
-    {
-        for ($i=0; $i < 10; $i++) { 
-            $project = new Project();
-            $project->title = $faker->sentence(3);
-            $project->description = $faker->text(500);
-            $project->thumb = $faker->imageUrl(800, 600, 'animals', true);
-            $project->link = $faker->sentence(15);
-            $project->save();   
+    public function run()
+    {   
+        $projects = config("store");
+
+        foreach ($projects as $project) { 
+            $newProject = new Project();
+            $newProject->title = $project["title"];
+            $newProject->description = $project["description"];
+            $newProject->thumb = $project["thumb"];
+            $newProject->link = $project["link"];
+            $newProject->save();   
         }
     }
 }
