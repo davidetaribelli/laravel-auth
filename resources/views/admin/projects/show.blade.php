@@ -14,5 +14,13 @@
             </div>
         </div>
     </div>
+    <div class="load_ text-center">
+        <a href="{{route("admin.projects.edit", $project->id)}}" class="py-1 px-4 border-0 m-4 text-white btn btn-primary">EDIT</a>
+        <form action="{{route("admin.projects.destroy", $project)}}" method="post">
+            @csrf
+            @method('DELETE')
+            <input type="submit" class="py-1 px-4 border-0 m-4 text-white btn btn-danger" value="DELETE">
+        </form>
+    </div>
 </div>
 @endsection

@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Project;
 
 class ProjectController extends Controller
@@ -28,7 +29,21 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.projects.create");
+    }
+
+    private function validateProject($data){
+        $validator = Validator::make($data,[
+            "title"=>"required|min:5|max:50",
+            "description"=>"required|min:5|max:65535",
+        ],[
+            "title.required" => "Il titolo è obbligatorio",
+            "title.min" => "Il titolo deve essere almeno di :min caratteri",
+            "description.required" => "La descrizone è obbligatoria",
+            "description.min" => "La descrizone deve essere almeno di :min caratteri",
+        ])->validate();
+        
+        return $validator;
     }
 
     /**
@@ -39,7 +54,17 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $data = $this->validateProject($request->all());
+
+        $newProject =  new Project;
+        $newProject->title = $data["title"];
+        $newProject->description = $data["description"];
+        $newProject->thumb = $data["thumb"];
+        $newProject->price = $data["link"];
+    
+        $newProject->save();
+
+        return redirect()->route('admin.projects.show', $newProject->id);
     }
 
     /**
@@ -61,7 +86,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view("admin.projects.edit", compact ("project"));
     }
 
     /**
@@ -73,7 +98,17 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $data = $this->validateProject($request->all());
+
+        $newProject =  new Project;
+        $newProject->title = $data["title"];
+        $newProject->description = $data["description"];
+        $newProject->thumb = $data["thumb"];
+        $newProject->price = $data["link"];
+    
+        $newProject->save();
+
+        return redirect()->route('admin.projects.show', $newProject->id);
     }
 
     /**
@@ -84,6 +119,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        return redirect()->route('admin.projects.index');
     }
 }
