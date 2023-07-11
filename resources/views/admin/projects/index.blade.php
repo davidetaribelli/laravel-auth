@@ -10,14 +10,14 @@
                     <div class="card-body">
                         <h5 class="card-title">{{$project->title}}</h5>
                         <p class="card-text">{{$project->description}}</p>
-                        <a href="{{route("admin.projects.show", $project->id)}}" class="btn btn-primary">Maggiori informazioni</a>
+                        <a href="{{route("admin.projects.show", $project->id)}}" class="btn bg_darkorange">Maggiori informazioni</a>
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
     <div class="text-center">
-        <a href="{{route("admin.projects.create")}}" class="py-1 px-4 border-0 m-4 text-white btn btn-primary"> ADD </a>
+        <a href="{{route("admin.projects.create")}}" class="py-1 px-4 border-0 m-4 text-white btn bg_darkorange"> ADD </a>
     </div>
 </div>
 @endsection

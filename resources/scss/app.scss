@@ -1,4 +1,20 @@
 @import '~bootstrap/scss/bootstrap';
+body{
+    background-color: #2e2e41;
+}
+
+.bg_orange          {background-color: #fb6d10;}   
+.bg_darkorange      {background-color: #eb3e1b;}       
+.bg_red             {background-color: #86112e;}
+.bg_violet          {background-color: #4d3347;}   
+.bg_darkviolet      {background-color: #2e2e41;}      
+
+
+.c_orange           {color: #fb6d10;}
+.c_darkorange       {color: #eb3e1b;}    
+.c_red              {color: #86112e;}
+.c_violet           {color: #4d3347;}
+.c_darkviolet       {color: #2e2e41;}    
 
 .card{
     img{

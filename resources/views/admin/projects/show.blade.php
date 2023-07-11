@@ -21,13 +21,13 @@
         </div>
     </div>
     <div class="d-flex justify-content-center">
-        <a href="{{route("admin.projects.edit", $project->id)}}" class="py-1 px-4 border-0 m-4 text-white btn btn-primary">EDIT</a>
+        <a href="{{route("admin.projects.edit", $project->id)}}" class="py-1 px-4 border-0 m-4 text-white btn bg_orange">EDIT</a>
         <form action="{{route("admin.projects.destroy", $project)}}" method="post">
             @csrf
             @method('DELETE')
-            <input type="submit" class="py-1 px-4 border-0 m-4 text-white btn btn-danger" value="DELETE">
+            <input type="submit" class="py-1 px-4 border-0 m-4 text-white btn bg_red" value="DELETE">
         </form>
-        <a href="{{route("admin.projects.index")}}" class="py-1 px-4 border-0 m-4 text-white btn btn-primary">HOME</a>
+        <a href="{{route("admin.projects.index")}}" class="py-1 px-4 border-0 m-4 text-white btn bg_orange">HOME</a>
     </div>
 </div>
 @endsection
