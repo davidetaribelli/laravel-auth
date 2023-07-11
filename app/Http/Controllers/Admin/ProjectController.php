@@ -36,11 +36,14 @@ class ProjectController extends Controller
         $validator = Validator::make($data,[
             "title"=>"required|min:5|max:50",
             "description"=>"required|min:5|max:65535",
+            "thumb"=>"max:65535",
+            "link"=>"max:65535",
         ],[
             "title.required" => "Il titolo è obbligatorio",
             "title.min" => "Il titolo deve essere almeno di :min caratteri",
             "description.required" => "La descrizone è obbligatoria",
             "description.min" => "La descrizone deve essere almeno di :min caratteri",
+            
         ])->validate();
         
         return $validator;
@@ -60,7 +63,7 @@ class ProjectController extends Controller
         $newProject->title = $data["title"];
         $newProject->description = $data["description"];
         $newProject->thumb = $data["thumb"];
-        $newProject->price = $data["link"];
+        $newProject->link = $data["link"];
     
         $newProject->save();
 
@@ -100,15 +103,14 @@ class ProjectController extends Controller
     {
         $data = $this->validateProject($request->all());
 
-        $newProject =  new Project;
-        $newProject->title = $data["title"];
-        $newProject->description = $data["description"];
-        $newProject->thumb = $data["thumb"];
-        $newProject->price = $data["link"];
+        $project->title = $data["title"];
+        $project->description = $data["description"];
+        $project->thumb = $data["thumb"];
+        $project->link = $data["link"];
     
-        $newProject->save();
+        $project->update();
 
-        return redirect()->route('admin.projects.show', $newProject->id);
+        return redirect()->route('admin.projects.show', $project->id);
     }
 
     /**

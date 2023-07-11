@@ -18,8 +18,8 @@ return new class extends Migration
 
             $table->string("title", 50);
             $table->text("description");
-            $table->string("thumb")->nullable();
-            $table->string("link")->nullable();
+            $table->text("thumb")->nullable();
+            $table->text("link")->nullable();
 
             $table->timestamps();
         });
