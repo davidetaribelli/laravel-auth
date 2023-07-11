@@ -16,8 +16,5 @@
             @endforeach
         </div>
     </div>
-    <div class="text-center">
-        <a href="{{route("admin.projects.create")}}" class="py-1 px-4 border-0 m-4 text-white btn bg_darkorange"> ADD </a>
-    </div>
 </div>
 @endsection
