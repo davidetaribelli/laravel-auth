@@ -24,7 +24,19 @@ class UpdateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "title"=>"required|min:5|max:50",
+            "description"=>"required|min:5|max:65535",
+            "thumb"=>"nullable|max:65535",
+            "link"=>"nullable|max:65535",
+        ];
+    }
+    public function messages(){
+        return[
+
+            "title.required" => "Il titolo è obbligatorio",
+            "title.min" => "Il titolo deve essere almeno di :min caratteri",
+            "description.required" => "La descrizone è obbligatoria",
+            "description.min" => "La descrizone deve essere almeno di :min caratteri",  
         ];
     }
 }

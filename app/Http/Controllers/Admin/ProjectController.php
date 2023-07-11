@@ -32,23 +32,7 @@ class ProjectController extends Controller
         return view("admin.projects.create");
     }
 
-    private function validateProject($data){
-        $validator = Validator::make($data,[
-            "title"=>"required|min:5|max:50",
-            "description"=>"required|min:5|max:65535",
-            "thumb"=>"max:65535",
-            "link"=>"max:65535",
-        ],[
-            "title.required" => "Il titolo è obbligatorio",
-            "title.min" => "Il titolo deve essere almeno di :min caratteri",
-            "description.required" => "La descrizone è obbligatoria",
-            "description.min" => "La descrizone deve essere almeno di :min caratteri",
-            
-        ])->validate();
-        
-        return $validator;
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -57,7 +41,7 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $data = $this->validateProject($request->all());
+        $data = $request->validated();
 
         $newProject =  new Project;
         $newProject->title = $data["title"];
@@ -101,7 +85,7 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        $data = $this->validateProject($request->all());
+        $data = $request->validated();
 
         $project->title = $data["title"];
         $project->description = $data["description"];
